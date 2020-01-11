@@ -30,11 +30,22 @@ app.get('/:page', function (req, res) {
         login: 'Login',
         register: 'Register',
         order: 'Order',
-        product: 'Product',
         category: 'Category'
     }
     let page = req.params.page;
     res.render(page, { banner: banners[page] });
+});
+
+app.get('/single-product', function (req, res) {
+    res.render('single-product', { banner: 'Product' });
+});
+
+app.get('/sync', function(req, res) {
+    let models = require('./models');
+    models.sequelize.sync()
+    .then(()=>{
+        res.send('database sync finished');
+    });
 });
 
 // Set Server Port & Start Server
