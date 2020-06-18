@@ -1,10 +1,8 @@
 let express = require('express');
 let app = express();
 
-// Set Public Static Folder
 app.use(express.static(__dirname + '/public'));
 
-// User view Engine
 let expressHbs = require('express-handlebars');
 let hbs = expressHbs.create({
     extname: 'hbs',
