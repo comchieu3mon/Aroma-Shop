@@ -20,25 +20,25 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
-app.get('/:page', function (req, res) {
-    let banners = {
-        blog: 'Our Blog',
-        cart: 'Shopping Cart',
-        checkout: 'Checkout',
-        confirmation: 'Confirmation',
-        contact: 'Contact',
-        login: 'Login',
-        register: 'Register',
-        order: 'Order',
-        category: 'Category'
-    }
-    let page = req.params.page;
-    res.render(page, { banner: banners[page] });
-});
+// app.get('/:page', function (req, res) {
+//     let banners = {
+//         blog: 'Our Blog',
+//         cart: 'Shopping Cart',
+//         checkout: 'Checkout',
+//         confirmation: 'Confirmation',
+//         contact: 'Contact',
+//         login: 'Login',
+//         register: 'Register',
+//         order: 'Order',
+//         category: 'Category'
+//     }
+//     let page = req.params.page;
+//     res.render(page, { banner: banners[page] });
+// });
 
-app.get('/single-product', function (req, res) {
-    res.render('single-product', { banner: 'Product' });
-});
+// app.get('/single-product', function (req, res) {
+//     res.render('single-product', { banner: 'Product' });
+// });
 
 app.get('/sync', function(req, res) {
     let models = require('./models');
@@ -48,7 +48,6 @@ app.get('/sync', function(req, res) {
     });
 });
 
-// Set Server Port & Start Server
 app.set('port', process.env.PORT || 5000);
 app.listen(app.get('port'), function () {
     console.log(`Server is running at ${app.get('port')}`);
