@@ -17,6 +17,12 @@ router.get("/", function(req, res) {
         })
         .then(data => {
             res.locals.colors = data;
+            let productController = require('../controllers/productController');
+            return productController.getAll();
+        })
+        .then(data => {
+            res.locals.products = data;
+            console.log(data);
             res.render("category");
         })
         .catch(error => new Error(error));
