@@ -7,8 +7,19 @@ router.get("/", function(req, res) {
         .getAll()
         .then(data => {
             res.locals.categories = data;
-            res.render("category")
+            let brandController = require('../controllers/brandController');
+            return brandController.getAll();
         })
+        .then(data => {
+            res.locals.brands = data;
+            let colorController = require('../controllers/colorController');
+            return colorController.getAll();
+        })
+        .then(data => {
+            res.locals.colors = data;
+            res.render("category");
+        })
+        .catch(error => new Error(error));
 })
 
 router.get("/:id", function(req, res) {
