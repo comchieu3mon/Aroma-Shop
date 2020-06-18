@@ -11,13 +11,13 @@ $(function() {
 
   //------- hero carousel -------//
   $(".hero-carousel").owlCarousel({
-    items:3,
+    items:6,
     margin: 10,
     autoplay:false,
     autoplayTimeout: 5000,
     loop:true,
     nav:false,
-    dots:false,
+    dots:true,
     responsive:{
       0:{
         items:1
