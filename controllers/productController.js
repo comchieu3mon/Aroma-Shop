@@ -34,4 +34,16 @@ controller.getAll = () => {
     });
 }
 
+controller.getById = (id) => {
+    return new Promise((resolve, reject) => {
+        Product
+            .findOne({
+                where: { id : id},
+                include: [{ model: models.Category}]
+            })
+            .then(result => resolve(result))
+            .catch(error => new Error(error))
+    })
+}
+
 module.exports = controller;
