@@ -51,6 +51,30 @@ controller.getById = (id) => {
             })
             .then(productSpecification => {
                 product.ProductSpecification = productSpecification;
+                return models.Comment.findAll({
+                    where: { productId : id, parentCommentId: null },
+                    include: [{ model: models.User }, 
+                        { 
+                            model: models.Comment,
+                            as: 'SubComments',
+                            include: [{ model: models.User }]
+                        }
+                    ]
+                });
+            })
+            .then(comment => {
+                product.Comment = comment;
+                return models.Review.findAll({
+                    where: { productId : id},
+                    include: [{ model: models.User }]
+                })
+            })
+            .then(review => {
+                product.Review = review;
+                let stars = [];
+                for (let i = i; i <= 5; i++) {
+                    stars.push(review.filter(item -> item.rating == i));
+                }
                 resolve(product);
             })
             .catch(error => reject(new Error(error)));
