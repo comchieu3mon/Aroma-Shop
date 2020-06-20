@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 
-router.get("/", function(req, res) {
+router.get("/", function(req, res, next) {
     let categoryController = require('../controllers/categoryController');
     categoryController
         .getAll()
@@ -24,7 +24,7 @@ router.get("/", function(req, res) {
             res.locals.products = data;
             res.render("category");
         })
-        .catch(error => new Error(error));
+        .catch(error => next(new Error(error)));
 })
 
 router.get("/:id", function(req, res, next) {
