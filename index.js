@@ -18,11 +18,9 @@ let hbs = expressHbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
-// Define your root here
 
 app.use('/', require('./routes/indexRouter'));
 app.use('/products', require('./routes/productRouter'));
-
 
 app.get('/:page', function (req, res) {
     let banners = {

@@ -21,14 +21,18 @@ controller.getTrendingProduct = () => {
     });
 };
 
-controller.getAll = () => {
+controller.getAll = (query) => {
     return new Promise((resolve, reject) => {
+        let options = {
+            include: [{ model: models.Category }],
+            attributes: ['id', 'name', 'imagepath', 'price'],
+            where: {}
+        }
+        if (query.category) {
+            options.where.categoryId = query.category;
+        }
         Product
-            .findAll({
-                include: [{ model: models.Category }],
-                attributes: ['id', 'name', 'imagepath', 'price'],
-                limit: 9
-            })
+            .findAll(options)
             .then(data => resolve(data))
             .catch(error => new Error(error));
     });

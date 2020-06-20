@@ -23,7 +23,6 @@ helper.creatStarList = (stars) => {
 }
 
 helper.createStar = (star) => {
-    console.log(star);
     let str = ``;
     let i;
     for (i = 1; i <= star; i++) {
