@@ -36,4 +36,10 @@ router.delete('/', function(req, res) {
     });
 });
 
+router.delete('/all', function(req, res) {
+    req.session.cart.empty();
+    res.sendStatus(204);
+    res.end();
+});
+
 module.exports = router;

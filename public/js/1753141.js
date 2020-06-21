@@ -38,9 +38,6 @@ function removeCartItem(id) {
 }
 
 function updateCartItem(id, quantity) {
-    console.log("hello from update");
-    console.log(id);
-    console.log(quantity);
     $.ajax({
         url: '/cart',
         type: 'PUT',
@@ -50,6 +47,17 @@ function updateCartItem(id, quantity) {
             $('#cart-badge').html(result.totalQuantity);
             $('#totalPrice').html('$' + result.totalPrice);
             $(`#price${id}`).html('$' + result.item.price);
+        }
+    })
+}
+
+function clearCart() {
+    $.ajax({
+        url: '/cart/all',
+        type: 'DELETE',
+        success: function(result) {
+            $('#cart-badge').html(0);
+            $('#cart-body').html('<div class="alert alert-info text-center">Your cart is empty!</div>');
         }
     })
 }
