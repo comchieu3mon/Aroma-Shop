@@ -79,14 +79,15 @@
             </select>
           </div>
           <div>
-            <div class="input-group filter-bar-search">
-              <form action="/products" method="GET">
-                <input type="text" name="search" placeholder="Search">
-                <div class="input-group-append">
-                  <button type="submit"><i class="ti-search"></i></button>
-                </div>
-              </form>
-            </div>
+            <form action="/products" method="GET">
+              <div class="input-group filter-bar-search">
+                  <input type="text" name="search" placeholder="Search">
+                  <div class="input-group-append">
+                    <button type="submit"><i class="ti-search"></i></button>
+                  </div>
+              </div>
+            </form>
+
           </div>
         </div>
         <!-- End Filter Bar -->
@@ -99,8 +100,8 @@
                 <div class="card-product__img">
                   <img class="card-img" src="{{imagepath}}" alt="">
                   <ul class="card-product__imgOverlay">
-                    <li><button><i class="ti-search"></i></button></li>
-                    <li><button><i class="ti-shopping-cart"></i></button></li>
+                    <li><button onclick="location.href='/products/{{id}}'"><i class="ti-search"></i></button></li>
+                    <li><button class="add-to-cart" data-id="{{id}}"><i class="ti-shopping-cart"></i></button></li>
                     <li><button><i class="ti-heart"></i></button></li>
                   </ul>
                 </div>
