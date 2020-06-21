@@ -19,6 +19,9 @@ controller.getAll = (query) => {
         if (query.category) {
             options.include[0].include[0].where.categoryId = query.category;
         }
+        if (query.brand) {
+            options.include[0].include[0].where.brandId = query.brand;
+        }
         Color
             .findAll(options)
             .then(data => resolve(data))
