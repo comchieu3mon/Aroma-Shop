@@ -1,6 +1,8 @@
 let controller = {};
 let models = require('../models');
 let Brand = models.Brand;
+let Sequelize = require('sequelize');
+let Op = Sequelize.Op;
 
 controller.getAll = (query) => {
     return new Promise((resolve, reject) => {
@@ -21,6 +23,11 @@ controller.getAll = (query) => {
                 attributes: [],
                 where: { colorId: query.color }
             }];
+        }
+        if (query.search != '') {
+            options.include[0].where.name = {
+                [Op.iLike]: `%${query.search}%`
+            }
         }
         Brand
             .findAll(options)
