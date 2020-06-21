@@ -44,6 +44,7 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/indexRouter'));
 app.use('/products', require('./routes/productRouter'));
 app.use('/cart', require('./routes/cartRouter'));
+app.use('/comments', require('./routes/commentRouter'));
 
 app.get('/:page', function (req, res) {
     let banners = {
