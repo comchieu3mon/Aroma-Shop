@@ -20,4 +20,20 @@ router.post('/', function(req, res, next) {
         .catch(error => next(new Error(error)));
 })
 
+router.put('/', function(req, res) {
+    var productId = req.body.id;
+    var quantity = parseInt(req.body.quantity);
+    var cartItem = req.session.cart.update(productId, quantity);
+    res.json(cartItem);
+});
+
+router.delete('/', function(req, res) {
+    var productId = req.body.id;
+    req.session.cart.remove(productId);
+    res.json({
+        totalQuantity: req.session.cart.totalQuantity,
+        totalPrice: req.session.cart.totalPrice
+    });
+});
+
 module.exports = router;
