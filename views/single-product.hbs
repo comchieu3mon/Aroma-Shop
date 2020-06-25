@@ -19,7 +19,8 @@
 					<h2>${{price}}</h2>
 					<ul class="list">
 						<li><a class="active" href="#"><span>Category</span> : {{Category.name}}</a></li>
-						<li><a href="#"><span>Availibility</span> : {{#if availibility}}In Stock{{else}}Out of stock{{/if}}</a></li>
+						<li><a href="#"><span>Availibility</span> : {{#if availibility}}In Stock{{else}}Out of
+								stock{{/if}}</a></li>
 					</ul>
 					<p>{{summary}}</p>
 					<div class="product_count">
@@ -50,7 +51,7 @@
 	<div class="container">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item">
-				<a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+				<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
 					aria-selected="true">Description</a>
 			</li>
 			<li class="nav-item">
@@ -62,10 +63,11 @@
 					aria-controls="contact" aria-selected="false">Comments</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab"
-					aria-controls="review" aria-selected="false">Reviews</a>
+				<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+					aria-selected="false">Reviews</a>
 			</li>
 		</ul>
+
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
 				<p>{{{description}}}</p>
@@ -101,25 +103,27 @@
 									<div class="media-body">
 										<h4>{{User.fulllname}}</h4>
 										<h5>{{createdAt}}</h5>
-										<a class="reply_btn text-center" href="#" onclick="showReply({{id}},'{{User.fullname}}')">Reply</a>
+										<a class="reply_btn text-center" href="#"
+											onclick="showReply({{id}},'{{User.fullname}}')">Reply</a>
 									</div>
 								</div>
 								<p>{{message}}</p>
 								{{#each SubComments}}
 								<div class="review_item reply">
-								<div class="media">
-									<div class="d-flex">
-										<img src="{{User.avatarPath}}" alt="">
+									<div class="media">
+										<div class="d-flex">
+											<img src="{{User.avatarPath}}" alt="">
+										</div>
+										<div class="media-body">
+											<h4>{{User.fullname}}</h4>
+											<h5>{{createdAt}}</h5>
+											<a class="reply_btn" href="#"
+												onclick="showReply({{../id}},'{{User.fullname}}')">Reply</a>
+										</div>
 									</div>
-									<div class="media-body">
-										<h4>{{User.fullname}}</h4>
-										<h5>{{createdAt}}</h5>
-										<a class="reply_btn" href="#" onclick="showReply({{../id}},'{{User.fullname}}')">Reply</a>
-									</div>
+									<p>{{message}}</p>
 								</div>
-								<p>{{message}}</p>
 								{{/each}}
-							</div>
 							</div>
 							{{/each}}
 						</div>
@@ -127,30 +131,34 @@
 					<div class="col-lg-6">
 						<div class="review_box">
 							<h4>Post a comment</h4>
-							<form class="row form-review mt-3" action="/comments" method="post" id="contactForm"
+							<form class="contact_form" action="/comments" method="post" id="contactForm"
 								novalidate="novalidate">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="" id="reply"></label>
-										<input type="hidden" class="form-control" name="productId" id="productId" value="{{id}}">
-										<input type="hidden" class="form-control" name="parentCommentId" id="parentCommentId" value="">
+										<input type="hidden" class="form-control" name="productId" id="productId"
+											value="{{id}}">
+										<input type="hidden" class="form-control" name="parentCommentId"
+											id="parentCommentId" value="">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<textarea class="form-control different-control w-100" name="message" id="message"
-										cols="30" rows="5" placeholder="Enter Message"></textarea>
+										<textarea class="form-control different-control w-100" name="message"
+											id="message" cols="30" rows="5" placeholder="Enter Message"></textarea>
 									</div>
 								</div>
 								<div class="col-md-12 text-right">
-									<button type="submit" value="submit" class="button button--active button-review">Submit Now</button>
+									<button type="submit" value="submit"
+										class="button button--active button-review">Submit Now</button>
 								</div>
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+
+			<div class="tab-pane" id="review" role="tabpanel" aria-labelledby="review-tab">
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="row total_rate">
@@ -197,7 +205,7 @@
 								<li><a href="#"><i class="fa fa-star"></i></a></li>
 							</ul>
 							<p>Outstanding</p>
-							<form action="#/" class="form-contact form-review mt-3">
+							<form action="/reviews" method="POST" class="form-contact form-review mt-3">
 								<div class="form-group">
 									<input class="form-control" name="name" type="text" placeholder="Enter your name"
 										required>
