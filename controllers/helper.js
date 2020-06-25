@@ -1,7 +1,7 @@
 let helper = {};
 
 helper.creatStarList = (stars) => {
-    let str = `
+  let str = `
     <ul class="list">
         <li><a href="#">5 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i
                     class="fa fa-star"></i><i class="fa fa-star"></i><i
@@ -19,19 +19,19 @@ helper.creatStarList = (stars) => {
                     class="fa fa-star disabled"></i><i class="fa fa-star disabled"></i><i
                     class="fa fa-star disabled"></i> ${stars[0]}</a></li>
     </ul>`;
-    return str;
-}
+  return str;
+};
 
 helper.createStar = (star) => {
-    let str = ``;
-    let i;
-    for (i = 1; i <= star; i++) {
-        str += `<i class="fa fa-star"></i>`; 
-    }
-    for (; i <= 5; i++) {
-        str += `<i class="fa fa-star disabled"></i>`;
-    }
-    return str;
-}
+  let str = ``;
+  let i;
+  for (i = 1; i <= star; i++) {
+    str += `<i class="fa fa-star"></i>`;
+  }
+  for (; i <= 5; i++) {
+    str += `<i class="fa fa-star disabled"></i>`;
+  }
+  return str;
+};
 
 module.exports = helper;
