@@ -45,6 +45,7 @@ app.use('/', require('./routes/indexRouter'));
 app.use('/products', require('./routes/productRouter'));
 app.use('/cart', require('./routes/cartRouter'));
 app.use('/comments', require('./routes/commentRouter'));
+app.use('/reviews', require('./routes/reviewsRouter'))
 
 app.get('/:page', function (req, res) {
     let banners = {
@@ -70,7 +71,6 @@ app.get('/:page', function (req, res) {
 //         res.send('database sync finished');
 //     });
 // });
-
 
 
 app.set('port', process.env.PORT || 5000);
