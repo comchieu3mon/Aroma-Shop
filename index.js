@@ -38,6 +38,13 @@ app.use(function(req, res, next) {
     var cart = new Cart(req.session.cart ? req.session.cart : {});
     req.session.cart = cart;
     res.locals.totalQuantity = cart.totalQuantity;
+    if (req.session.user) {
+        res.locals.fullname = req.session.user.fullname;
+        res.locals.isLoggedIn = true;
+    } else {
+        res.locals.username = '';
+        res.locals.isLoggedIn = false;
+    }
     next();
 });
 
@@ -45,7 +52,8 @@ app.use('/', require('./routes/indexRouter'));
 app.use('/products', require('./routes/productRouter'));
 app.use('/cart', require('./routes/cartRouter'));
 app.use('/comments', require('./routes/commentRouter'));
-app.use('/reviews', require('./routes/reviewsRouter'))
+app.use('/reviews', require('./routes/reviewsRouter'));
+app.use('/users', require('./routes/userRouter'));
 
 app.get('/:page', function (req, res) {
     let banners = {
