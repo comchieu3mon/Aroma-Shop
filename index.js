@@ -27,7 +27,7 @@ app.use(cookieParse());
 
 let session = require('express-session');
 app.use(session({
-    cookie: { httpOnly: true, maxAge: 30 * 24 * 60 * 60 * 1000},
+    cookie: { httpOnly: true, maxAge: null },
     secret: 's3cr3t',
     resave: false,
     saveUninitialized: false

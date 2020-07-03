@@ -130,6 +130,7 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="review_box">
+							{{#if ../isLoggedIn}}
 							<h4>Post a comment</h4>
 							<form class="contact_form" action="/comments" method="post" id="contactForm"
 								novalidate="novalidate">
@@ -153,6 +154,9 @@
 										class="button button--active button-review">Submit Now</button>
 								</div>
 							</form>
+							{{else}}
+							<h4>Please log in to post comment! <a href="/users/login?returnURL=/products/{{id}}">Click here to login.</a></h4>
+							{{/if}}
 						</div>
 					</div>
 				</div>
@@ -194,6 +198,7 @@
 						</div>
 					</div>
 					<div class="col-lg-6">
+						{{#if ../isLoggedIn}}
 						<div class="review_box">
 							<h4>Add a Review</h4>
 							<p>Your Rating:</p>
@@ -219,6 +224,9 @@
 										Now</button>
 								</div>
 							</form>
+							{{else}}
+							<h4>Please log in to add a rating! <a href="/users/login?returnURL=/products/{{id}}">Click here to login.</a></h4>
+							{{/if}}
 						</div>
 					</div>
 				</div>

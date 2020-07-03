@@ -5,6 +5,8 @@ let Op = Sequelize.Op;
 let userController = require('../controllers/userController');
 
 router.get('/login', function (req, res) {
+    req.session.returnURL = req.query.returnURL;
+    console.log(req.session.returnURL);
     res.render('login');
 })
 
@@ -46,8 +48,9 @@ router.post('/register', function (req, res, next) {
                 .createUser(user)
                 .then(user => {
                     if (keepLoggedIn) {
+                        req.session.cookie.maxAge = 30 * 60 * 60 * 24 * 100; 
                         req.session.user = user;
-                        res.redirect('/');
+                        res.redirect('/')
                     } else {
                         res.render('login', {
                             message: 'You have registered, now please login',
@@ -62,15 +65,20 @@ router.post('/register', function (req, res, next) {
 router.post('/login', function (req, res) {
     let email = req.body.username;
     let password = req.body.password;
-    let keepLoggedIn = req.body.keepLoggedIn;
+    let keepLoggedIn = (req.body.keepLoggedIn != undefined)
 
     userController
         .getUserByEmail(email)
         .then(user => {
             if (user) {
                 if (userController.comparePassword(password, user.password)) {
+                    req.session.cookie.maxAge = keepLoggedIn ? 30 * 60 * 60 * 24 * 100 : null; 
                     req.session.user = user;
-                    res.redirect('/');
+                    if (req.session.returnURL) {
+                        res.redirect(req.session.returnURL);
+                    } else {
+                        res.redirect('/');
+                    }
                 } else {
                     res.render('login', {
                         message: 'Incorrect password!',
